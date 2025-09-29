@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ya la tienes */
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(10px, -15px) rotate(5deg); }
+  50% { transform: translate(-5px, -10px) rotate(-5deg); }
+  75% { transform: translate(15px, -5px) rotate(3deg); }
+}
+.animate-float { animation: float 4s ease-in-out infinite; }
+
+/* ---------- NUEVO: estilos compactos y layout dashboard ---------- */
+@layer components {
+  .card        { @apply bg-white rounded-xl shadow-sm; }
+  .card-compact{ @apply p-3 sm:p-4; } /* menos padding */
+  .card-title  { @apply text-slate-800 font-semibold text-base sm:text-lg mb-2; }
+  .soft        { @apply bg-slate-50; }
+  .muted       { @apply text-slate-500; }
+  .stat        { @apply bg-slate-50 rounded-lg p-3; }
+}
+
+/* altura de “panel” para que todo quepa sin scroll en desktop */
+@layer utilities {
+  /* dashboard alto = viewport – padding exterior aprox */
+  .dashboard-h { height: calc(100vh - 24px); } /* ajusta si tu padding cambia */
+}
