@@ -5,9 +5,9 @@ import DataTable from './components/DataTable';
 import CasesAnalysis from './components/CasesAnalysis';
 import BeeAnimation from './components/BeeAnimation';
 import type { SimulationParams } from './types';
-import { calculateAllee } from './utils/calculateAllee';
-
-// importa tu logo UMSA desde src/images
+import { calculateAlleeWithEquations } from './utils/calculateAllee';
+import type { DataPointWithEquation } from './utils/calculateAllee';
+import 'katex/dist/katex.min.css';
 import umsaLogo from './images/umsa.png';
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
     N0: 30,
   });
 
-  const data = calculateAllee(params, 10);
+  const data: DataPointWithEquation[] = calculateAlleeWithEquations(params, 10);
   const finalPopulation = data[data.length - 1].population;
 
   return (
@@ -29,50 +29,82 @@ function App() {
           {/* HEADER - TÍTULO */}
           <div className="bg-white rounded-xl shadow-lg p-4 border-l-8 border-blue-500">
             <div className="flex items-center justify-between">
-              {/* Parte izquierda: título */}
-              <div className="flex items-center gap-3">
+
+              {/* IZQUIERDA: Logo + Título + Botones */}
+              <div className="flex items-center gap-4">
                 <div className="bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg p-3 shadow-md">
-                  <svg
-                    width="32"
-                    height="32"
-                    viewBox="0 0 50 50"
-                    className="text-white"
-                  >
-                    <path
-                      d="M25 5 L45 15 L45 35 L25 45 L5 35 L5 15 Z"
-                      fill="currentColor"
-                      opacity="0.9"
-                    />
-                    <circle
-                      cx="25"
-                      cy="25"
-                      r="8"
-                      fill="white"
-                      opacity="0.3"
-                    />
+                  <svg width="32" height="32" viewBox="0 0 50 50" className="text-white">
+                    <path d="M25 5 L45 15 L45 35 L25 45 L5 35 L5 15 Z" fill="currentColor" opacity="0.9"/>
+                    <circle cx="25" cy="25" r="8" fill="white" opacity="0.3"/>
                   </svg>
                 </div>
-                <div>
+
+                {/* Título y subtítulo */}
+                <div className="flex flex-col">
                   <h1 className="text-2xl md:text-3xl font-bold text-gray-800 leading-tight">
                     Modelo Logístico Extendido
                   </h1>
-                  <p className="text-base md:text-lg font-semibold text-blue-600">
-                    (Allee)
-                  </p>
+                  <p className="text-base md:text-lg font-semibold text-blue-600">(Allee)</p>
+                </div>
+
+                {/* Botones estilizados */}
+                <div className="flex items-center gap-2 ml-4">
+                  {/* YouTube */}
+                  <a
+                    href="https://www.youtube.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative px-4 py-2 rounded-lg bg-gradient-to-r from-red-500 to-red-600 text-white font-bold shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden"
+                  >
+                    <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></span>
+                    <span className="relative flex items-center gap-2">
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                      </svg>
+                      YouTube
+                    </span>
+                  </a>
+
+                  {/* TikTok */}
+                  <a
+                    href="https://www.tiktok.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative px-4 py-2 rounded-lg bg-gradient-to-r from-gray-800 to-black text-white font-bold shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden"
+                  >
+                    <span className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-pink-400 opacity-0 group-hover:opacity-30 transition-opacity duration-300"></span>
+                    <span className="relative flex items-center gap-2">
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                      </svg>
+                      TikTok
+                    </span>
+                  </a>
+
+                  {/* Aplicación */}
+                    <a
+                      href="/app-debug.apk"
+                      download
+                      className="group relative px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden"
+                    >
+                      <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></span>
+                      <span className="relative flex items-center gap-2">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18c-3.86-1.07-6.5-4.53-6.5-8.5V8.75L12 5.5l6.5 3.25V11.5c0 3.97-2.64 7.43-6.5 8.5z"/>
+                          <path d="M10.5 14.5L8 12l-1.5 1.5L10.5 17l7-7-1.5-1.5z"/>
+                        </svg>
+                        Descargar App
+                      </span>
+                    </a>
+
                 </div>
               </div>
 
-              {/* Parte derecha: logo UMSA + texto */}
-              <div className="flex items-center gap-2">
-                <img
-                  src={umsaLogo}
-                  alt="UMSA Logo"
-                  className="w-12 h-12 object-contain"
-                />
-                <span className="text-lg md:text-xl font-bold text-gray-700">
-                  UMSA
-                </span>
+              {/* DERECHA: Logo UMSA */}
+              <div className="flex items-center">
+                <img src={umsaLogo} alt="UMSA Logo" className="w-14 h-14 object-contain drop-shadow-md" />
               </div>
+
             </div>
           </div>
 
@@ -85,7 +117,13 @@ function App() {
               <GrowthChart data={data} params={params} />
             </div>
             <div className="lg:col-span-3 h-[380px] md:h-[400px]">
-              <DataTable data={data} />
+              <DataTable
+                data={data}
+                r={params.r}
+                K={params.K}
+                A={params.A}
+                dt={1}
+              />
             </div>
           </div>
 

@@ -1,5 +1,6 @@
 import type { SimulationParams } from '../types';
 
+
 const Stat: React.FC<{
   label: string;
   value: React.ReactNode;
