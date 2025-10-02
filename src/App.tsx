@@ -9,6 +9,11 @@ import { calculateAlleeWithEquations } from './utils/calculateAllee';
 import type { DataPointWithEquation } from './utils/calculateAllee';
 import 'katex/dist/katex.min.css';
 import umsaLogo from './images/umsa.png';
+import 'katex/dist/katex.min.css';
+
+
+
+
 
 function App() {
   const [params, setParams] = useState<SimulationParams>({
@@ -56,12 +61,16 @@ function App() {
                 </div>
               </div>
 
+
+
+              
+
               {/* DERECHA: Botones + Logo UMSA */}
               <div className="flex items-center gap-2 sm:gap-3 justify-between sm:justify-end w-full sm:w-auto flex-wrap">
 
                 {/* YouTube */}
                 <a
-                  href="https://www.youtube.com"
+                  href="https://youtu.be/lXLxsZmGmCQ"
                   target="_blank" rel="noopener noreferrer"
                   className="group relative px-3 py-2 sm:px-4 rounded-lg bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold sm:font-bold shadow-md hover:shadow-xl hover:scale-105 transition-all"
                 >
@@ -75,7 +84,7 @@ function App() {
 
                 {/* TikTok */}
                 <a
-                  href="https://www.tiktok.com"
+                  href="https://vm.tiktok.com/ZMAmD5uuP/"
                   target="_blank" rel="noopener noreferrer"
                   className="group relative px-3 py-2 sm:px-4 rounded-lg bg-gradient-to-r from-gray-800 to-black text-white font-semibold sm:font-bold shadow-md hover:shadow-xl hover:scale-105 transition-all"
                 >
@@ -89,7 +98,7 @@ function App() {
 
                 {/* Descargar App */}
                 <a
-                  href="/app-debug.apk" download
+                  href="/simulacion.apk" download
                   className="group relative px-3 py-2 sm:px-4 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold sm:font-bold shadow-md hover:shadow-xl hover:scale-105 transition-all"
                 >
                   <span className="relative flex items-center gap-2">
@@ -110,6 +119,7 @@ function App() {
               </div>
             </div>
           </div>
+          
 
           {/* FILA SUPERIOR */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
