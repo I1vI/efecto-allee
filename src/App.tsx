@@ -61,7 +61,7 @@ function App() {
 
                 {/* YouTube */}
                 <a
-                  href="https://www.youtube.com"
+                  href="https://youtu.be/lXLxsZmGmCQ"
                   target="_blank" rel="noopener noreferrer"
                   className="group relative px-3 py-2 sm:px-4 rounded-lg bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold sm:font-bold shadow-md hover:shadow-xl hover:scale-105 transition-all"
                 >
@@ -75,7 +75,7 @@ function App() {
 
                 {/* TikTok */}
                 <a
-                  href="https://www.tiktok.com"
+                  href="https://vm.tiktok.com/ZMAmD5uuP/"
                   target="_blank" rel="noopener noreferrer"
                   className="group relative px-3 py-2 sm:px-4 rounded-lg bg-gradient-to-r from-gray-800 to-black text-white font-semibold sm:font-bold shadow-md hover:shadow-xl hover:scale-105 transition-all"
                 >
